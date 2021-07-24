@@ -20,3 +20,20 @@ CREATE TABLE IF NOT EXISTS races (
     skills TEXT,
     stats TEXT
 );
+
+CREATE TABLE IF NOT EXISTS skills (
+    sname TEXT PRIMARY KEY,
+    prof_classes, TEXT NOT NULL
+);
+
+/*
+CREATE TABLE IF NOT EXISTS classDisplay (
+    cname, hit_dice, skill_points, bab, good_saves, signature_ability, spellcaster
+    All but signature_ability are NOT NULL
+    Only exists if there is a specific class table already.
+);
+
+CREATE TABLE IF NOT EXISTS wizard (
+    level NN, bab NN, fsave NN, rsave NN, wsave NN, abilities, spells
+)
+*/

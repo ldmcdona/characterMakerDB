@@ -48,6 +48,7 @@ Well, you need a name, stats, race, class, level, alignment, skills, feats, abil
     Race modifies stats and maybe gives abilities or a feat or skills
     Class has BAB, Saves, Abilities, and Spells
         Level relates to class
+        Class determines proficient skills
     Alignment is 1 of 9 choices
     Skills is a bunch of numbers
     Feats are selected off a list
@@ -55,3 +56,16 @@ Well, you need a name, stats, race, class, level, alignment, skills, feats, abil
     Inventory is just a bunch of strings
     Spells is probably just a list of numbers.
 """
+
+def classChoose(con, cur):
+    cur.execute("select * from classes")
+    class_data = cur.fetchall()
+
+    #Gonna stop you right there. 
+    #Classes are probably gonna need individual tables. Just like the PHB.
+    #Probably have a table for brief class info for selection/short hand.
+    #Need to do some foriegn key stuff there. 
+    #This will also solve the ability problem. Just a column of the table.
+
+    #Races are gonna have a lot of ability text since it'll included darkvision and saves and stuff.
+    #Also gonna have to properly plan out how to organize data for later use. line.split("_") sort of thing.
