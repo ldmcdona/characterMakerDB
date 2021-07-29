@@ -9,7 +9,7 @@ def main():
 
     print("Database testing.")
     while True:
-        print("Enter 'C' to add a class. Enter 'F' to add a fear.\nEnter 'R' to add a race. Enter 'V' to view.\nEnter 'Q' to quit.")
+        print("Enter 'C' to add a class. Enter 'F' to add a feat.\nEnter 'R' to add a race. Enter 'V' to view.\nEnter 'Q' to quit.")
         x = input(">")
         if x == "C":
             y = addClass()
@@ -31,7 +31,21 @@ def main():
 
 def addClass():
     print("Enter class name.")
-    a = input(">")
+    na = input(">")
+    while True:
+        print("Enter class Hit-Dice. (4-12)")
+        hd = int(input(">"))
+        if hd >= 4 and hd <= 12:
+            break
+        else:
+            print("Invalid input.")
+    while True:
+        print("How many skill points does the class get?. (2-8)")
+        sk = int(input(">"))
+        if sk >= 2 and sk <= 8:
+            break
+        else:
+            print("Invalid input.")
     while True:
         print("Enter Base Attack Bonus. (good/average/poor)")
         b = input(">")
@@ -40,36 +54,61 @@ def addClass():
         else:
             print("Invalid input.")
     while True:
-        print("Enter Fortitude Save. (0/1)")
-        c1 = int(input(">"))
-        if c1 == 0 or c1 == 1:
+        print("Is Fortitude a good save for this class? (Y/N)")
+        c1 = input(">")
+        if c1 == "Y" or c1 == "N":
             break
         else:
             print("Invalid input.")
     while True:
-        print("Enter Reflex Save. (0/1)")
-        c2 = int(input(">"))
-        if c2 == 0 or c2 == 1:
+        print("Is Reflex a good save for this class? (Y/N)")
+        c2 = input(">")
+        if c2 == "Y" or c2 == "N":
             break
         else:
             print("Invalid input.")
     while True:
-        print("Enter Will Save. (0/1)")
-        c3 = int(input(">"))
-        if c3 == 0 or c3 == 1:
+        print("Is Will a good save for this class? (Y/N)")
+        c3 = input(">")
+        if c3 == "Y" or c3 == "N":
             break
         else:
             print("Invalid input.")
-    print("Abilities are not yet included.\nN/A")
+    print("What is the classes signature ability?")
+    ab = input(">")
     while True:
-        print("Is the class a spellcaster? (0/1)")
-        d = int(input(">"))
-        if d == 0 or d == 1:
+        print("Is the class a spellcaster? (Y/N)")
+        sp = input(">")
+        if sp == "Y" or sp == "N":
             break
         else:
             print("Invalid input.")
 
-    e = [a, b, c1, c2, c3, "N/A", d]
+    saves = ""
+    if c1 == "Y":
+        saves += "fort"
+    if c2 == "Y":
+        if saves != "":
+            saves += " ref"
+        else:
+            saves += "ref"
+    if c3 == "Y":
+        if saves != "":
+            saves += " will"
+        else:
+            saves += "will"    
+
+    if saves == "":
+        saves = None
+    if ab == "":
+        ab = None
+
+    if sp == "Y":
+        sp = 1
+    else:
+        sp = 0
+
+    e = [na, hd, sk, b, saves, ab, sp]
     return e
 
 main()

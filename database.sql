@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS classes (
     cname TEXT PRIMARY KEY,
+    hit_dice TINYINT NOT NULL,
+    skill_points TINYINT NOT NULL,
     bab TEXT NOT NULL,
-    fsave BOOLEAN NOT NULL,
-    rsave BOOLEAN NOT NULL,
-    wsave BOOLEAN NOT NULL,
-    abilities TEXT NOT NULL,
+    good_saves TEXT,
+    signature_ability TEXT,
     spells BOOLEAN NOT NULL
 );
 

@@ -59,4 +59,25 @@ def main():
         
     print("Your attributes are now:", attributes)
 
+    while True:
+        print("Is your character Lawful, Neutral, or Chaotic?")
+        order = input(">")
+        if order == "Lawful" or order == "Neutral" or order == "Chaotic":
+            break
+        else:
+            print("Invalid input.")
+
+    while True:
+        print("Is your character Good, Neutral, or Evil?")
+        moral = input(">")
+        if moral == "Good" or moral == "Neutral" or moral == "Evil":
+            break
+        else:
+            print("Invalid input.")
+
+    if order == moral:
+        print("Your alignment is True Neutral")
+    else:
+        print("Your alignment is", order, moral)
+
 main()

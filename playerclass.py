@@ -1,3 +1,5 @@
+import sqlite3
+
 class playerclass:
     def __init__(self, name, bab, saves, spells):
         self.name = name
@@ -57,15 +59,48 @@ Well, you need a name, stats, race, class, level, alignment, skills, feats, abil
     Spells is probably just a list of numbers.
 """
 
+    #Let's try to keep things basic. 
+        #Stats, Races, Classes, Levels, BAB, Saves, Spellcasting, Alignment
+
+        #Feats is a giant pile of things, as is skills, as is abilities, as is inventory
+
+        #When we have the basics done we can revisit the rest.
+
 def classChoose(con, cur):
     cur.execute("select * from classes")
     class_data = cur.fetchall()
+    class_names = []
+    for row in class_data:
+        print(row)
+        class_names.append(row[0])
+    while True:
+        print("Select character class. (Enter Class name)")
+        x = input(">")
+        if x in class_names:
+            break
+        else:
+            print("Invalid Input.")
+    
+    cur.execute("select * from classes where cname = '%s'" % x)
+    choice = cur.fetchone()
+    return choice
 
-    #Gonna stop you right there. 
-    #Classes are probably gonna need individual tables. Just like the PHB.
-    #Probably have a table for brief class info for selection/short hand.
-    #Need to do some foriegn key stuff there. 
-    #This will also solve the ability problem. Just a column of the table.
+def testing():
+    con = sqlite3.connect('testing.db')
+    cur = con.cursor()
 
-    #Races are gonna have a lot of ability text since it'll included darkvision and saves and stuff.
-    #Also gonna have to properly plan out how to organize data for later use. line.split("_") sort of thing.
+    sql_file = open("database.sql")
+    sql_as_string = sql_file.read()
+    cur.executescript(sql_as_string)
+    cur.execute("select * from classes")
+    a = cur.fetchone()
+    if a == None:
+        sql_file2 = open("insert.sql")
+        sql_as_string2 = sql_file2.read()
+        cur.executescript(sql_as_string2)
+
+    z = classChoose(con, cur)
+    print("Class Chosen:")
+    print(z)
+
+#testing()
