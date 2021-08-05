@@ -1,15 +1,27 @@
-class character:
-    def __init__(self, stats, race, character_class, level, alignment, skills, feats, abilities, inventory, spells):
-        self.stats = stats
-        self.race = race
-        self.character_class = character_class
-        self.level = level
-        self.alignment = alignment
-        self.skills = skills
-        self.feats = feats
-        self.abilities = abilities
-        self.inventory = inventory
-        self.spells = spells
+class Character:
+    def __init__(self):
+        self.stats = None
+        self.race = None
+        self.character_class = None
+        self.level = None
+        self.alignment = None
+        self.feats = "N/A"
+        self.inventory = "N/A"
+
+    def set_stats(self, sb):
+        self.stats = sb
+
+    def set_race(self, r):
+        self.race = r
+
+    def set_char(self, cc):
+        self.character_class = cc
+
+    def set_level(self, lev):
+        self.level = lev
+
+    def set_align(self, al):
+        self.alignment = al
 
     def get_x(self):
         pass

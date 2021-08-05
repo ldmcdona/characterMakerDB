@@ -1,35 +1,57 @@
 import sqlite3
 
-class playerclass:
-    def __init__(self, name, bab, saves, spells):
+class Playerclass:
+    def __init__(self, name, hd, sp, bab, saves, sig, spells):
         self.name = name
-        self.level = 1
+        self.hit_die = hd
+        self.health = hd
+        self.skill_points = sp
+        self.skills = sp * 4
         self.bab = bab
         self.full_bab = ""
         self.saves = saves
         self.full_saves = [0, 0, 0]
+        self.signature = sig
         self.spells = spells
+        self.level = 1
+
+    def levelSet(self, lev):
+        self.level = lev
+        x = int(self.level / 4)
+        for _ in range(x):
+            pass
+        self.health = self.hit_die * lev
+        self.skills = (self.skill_points * 4) + (self.skill_points * (lev - 1))
+        self.saveline()
+        self.babline()
 
     def levelUp(self):
+        self.level += 1
+        self.health += self.hit_die
+        self.skills += self.skill_points
         if self.level % 4 == 0:
             pass
         else:
             pass
+        self.saveline()
+        self.babline()
 
     def saveline(self):
+        snames = ["fort", "ref", "will"]
+        temp = self.saves.split(" ")
         for i in range(3):
-            if self.saves[i] == 1:
-                self.full_saves[i] = (self.level / 2) + 2
+            if snames[i] in temp:
+                self.full_saves[i] = int((self.level / 2) + 2)
             else:
-                self.full_saves[i] = (self.level / 3)
+                self.full_saves[i] = int(self.level / 3)
     
     def babline(self):
         if self.bab == "good":
             temp = self.level
         elif self.bab == "average":
-            temp = (self.level * 0.75)
+            temp = int(self.level * 0.75)
         elif self.bab == "poor":
-            temp = (self.level / 2)
+            temp = int(self.level / 2)
         
         while True:
             self.full_bab += "+" + str(temp)
